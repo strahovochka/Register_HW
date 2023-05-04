@@ -24,7 +24,7 @@
                         </constraints>
                     </imageView>
                 </subviews>
-                <color key="backgroundColor" red="0.142631799" green="0.1537381411" blue="0.17064681649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="h0U-UV-Ahc" secondAttribute="bottom" constant="14" id="0UO-zh-Vcc"/>
                     <constraint firstItem="h0U-UV-Ahc" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZwY-2M-x7b"/>
@@ -36,7 +36,7 @@
             <connections>
                 <outlet property="inputImage" destination="h0U-UV-Ahc" id="YWQ-yw-yCp"/>
             </connections>
-            <point key="canvasLocation" x="-24.427480916030532" y="19.718309859154932"/>
+            <point key="canvasLocation" x="-25.190839694656489" y="19.718309859154932"/>
         </tableViewCell>
     </objects>
 </document>

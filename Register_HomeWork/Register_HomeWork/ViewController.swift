@@ -64,13 +64,9 @@ extension ViewController: UITableViewDataSource {
         }
         
         cell.inputImage.image = inputContent[indexPath.section].image ?? UIImage()
-
-        let textFieldView = AnimatedTextField(name: inputContent[indexPath.section].name)
-        cell.addSubview(textFieldView)
-        
+        cell.textField.label.text = inputContent[indexPath.section].name
         cell.backgroundColor = .clear
         cell.contentView.layer.cornerRadius = 12
-        
         cell.contentView.layer.masksToBounds = true
         return cell
     }

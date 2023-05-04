@@ -9,12 +9,14 @@ import UIKit
 
 class AnimatedTextField: UIView {
     
-    var name: String
+    var name: String?
+    
+    weak var delegate: AnimatedTextFieldProtocol?
     
     private var labelYAnchorConstraint: NSLayoutConstraint!
     private var textFieldYAnchorCondtraint: NSLayoutConstraint!
     
-    private lazy var label: UILabel! = {
+    lazy var label: UILabel! = {
         let label = UILabel()
         label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
         label.text = name
@@ -23,7 +25,7 @@ class AnimatedTextField: UIView {
         return label
     }()
     
-    private lazy var usernameTextField: UITextField! = {
+    lazy var usernameTextField: UITextField! = {
         let textLabel = UITextField()
         textLabel.borderStyle = .none
         textLabel.textColor = .white
@@ -31,8 +33,8 @@ class AnimatedTextField: UIView {
         return textLabel
     }()
     
-    init(name: String) {
-        self.name = name
+    init() {
+        //self.name = name
         super.init(frame: CGRect(x: 41, y: 3, width: 290, height: 41))
         addSubview(usernameTextField)
         addSubview(label)
@@ -71,6 +73,7 @@ extension AnimatedTextField: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        delegate?.startedEditing()
         label.textColor = UIColor(red: 0.675, green: 0.675, blue: 0.675, alpha: 1)
         labelYAnchorConstraint.constant = -23
         textFieldYAnchorCondtraint.constant = 11
@@ -84,9 +87,10 @@ extension AnimatedTextField: UITextFieldDelegate {
         if let text = textField.text, text.isEmpty {
             labelYAnchorConstraint.constant = 0
             textFieldYAnchorCondtraint.constant = 0
-            
+            label.textColor = UIColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
             performAnimation(transform: CGAffineTransform(scaleX: 1, y: 1))
         }
+        delegate?.endEditing(textField)
     }
     
     fileprivate func performAnimation(transform: CGAffineTransform) {
@@ -102,4 +106,9 @@ extension AnimatedTextField: UITextFieldDelegate {
             self.layoutIfNeeded()
         }, completion: nil)
     }
+}
+
+protocol AnimatedTextFieldProtocol: AnyObject {
+    func startedEditing()
+    func endEditing(_ textField: UITextField)
 }
